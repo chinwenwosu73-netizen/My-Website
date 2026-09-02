@@ -7,3 +7,5 @@ Thumbs.db
 .idea/
 
 # Local-only / large assets (optional)
+.vercel
+.env*
