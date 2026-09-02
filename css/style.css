@@ -583,6 +583,10 @@ img.company-logo[alt*="WarbleLive"] {
 }
 .card-link .arr { transition: transform .3s var(--ease); }
 .card-link:hover .arr { transform: translateX(4px); }
+.card-links { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+.card-links .card-link { color: var(--beige-600); }
+.card-links .card-link--gh { color: var(--ink-soft); font-size: 14px; }
+.card-links .card-link--gh:hover { color: var(--beige-600); }
 
 /* Image placeholder (user will drop in real photos) */
 .img-holder {
