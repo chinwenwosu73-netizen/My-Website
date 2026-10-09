@@ -292,6 +292,7 @@ body.home > .marquee { flex: 0 0 auto; }
 }
 .btn .arr { transition: transform .3s var(--ease); }
 .btn:hover .arr { transform: translateX(4px); }
+.btn svg { width: 18px; height: 18px; flex-shrink: 0; }
 .btn-primary { background: var(--ink); color: var(--white); }
 .btn-primary:hover { background: var(--beige-600); transform: translateY(-2px); box-shadow: var(--shadow-2); }
 .btn-ghost { border: 1px solid var(--line); background: var(--white); color: var(--ink); }
@@ -1111,4 +1112,56 @@ img.company-logo[alt*="WarbleLive"] {
   .impact-gallery { grid-template-columns: repeat(2, 1fr); }
   .fc-2 { right: -8px; }
   .timeline-item { padding-left: 40px; }
+}
+
+/* ============================================================
+   MOBILE — homepage & hero responsiveness
+   ============================================================ */
+@media (max-width: 860px) {
+  /* Allow the homepage to flow and scroll naturally instead of
+     forcing everything into a single fixed viewport. */
+  body.home {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+  body.home > .hero {
+    min-height: auto;
+    padding-top: calc(var(--nav-h) + 24px);
+  }
+  .hero-inner {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  body.home > .hero {
+    padding-top: calc(var(--nav-h) + 16px);
+  }
+  .hero-inner {
+    gap: 32px;
+    padding: 8px 0 32px;
+  }
+  .hero h1 {
+    font-size: clamp(38px, 12vw, 50px);
+    margin-bottom: 18px;
+  }
+  .hero p.lede {
+    font-size: 17px;
+    margin-bottom: 28px;
+  }
+  .hero-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .hero-actions .btn {
+    justify-content: center;
+    width: 100%;
+  }
+  .hero-photo {
+    max-width: 100%;
+  }
 }
