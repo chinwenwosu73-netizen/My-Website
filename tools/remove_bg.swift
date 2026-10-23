@@ -32,13 +32,16 @@ guard let observation = request.results?.first else {
 }
 
 // 2. Get a mask CIImage (grayscale: white = subject, black = background)
-let maskPixelBuffer = try observation.generateScaledMask(for: ciImage)
+let maskPixelBuffer = try observation.generateScaledMaskForImage(
+    forInstances: observation.allInstances,
+    from: handler
+)
 let maskImage = CIImage(cvPixelBuffer: maskPixelBuffer)
 
-// 3. Composite: keep the original image where mask is white, transparent where black
+// 3. Composite the subject over a solid white background
 let blend = CIFilter(name: "CIBlendWithMask")!
 blend.setValue(ciImage, forKey: kCIInputImageKey)
-blend.setValue(CIImage(color: .clear).cropped(to: ciImage.extent), forKey: kCIInputBackgroundImageKey)
+blend.setValue(CIImage(color: .white).cropped(to: ciImage.extent), forKey: kCIInputBackgroundImageKey)
 blend.setValue(maskImage, forKey: kCIInputMaskImageKey)
 
 guard let output = blend.outputImage?.cropped(to: ciImage.extent) else {
